@@ -1,6 +1,5 @@
 # CaseStudy
-# CloudSquare (CSQ) Application Intake — Portal + Webhook
-#
+# Application Intake — Portal + Webhook
 This project implements a small “application intake” flow in Salesforce:
 
 - **Portal (Experience Cloud) submission** via LWC
