@@ -1,0 +1,9 @@
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.slds-scoped-notification {
+    border-radius: 0.5rem;
+}

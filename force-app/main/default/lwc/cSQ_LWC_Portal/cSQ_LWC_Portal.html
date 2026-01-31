@@ -1,0 +1,143 @@
+<template>
+    <div class="container">
+        <lightning-card title="Application Form">
+            <div class="content slds-p-around_medium">
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-m-bottom_medium">
+                    <lightning-spinner alternative-text="Submitting..." size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={successMessage}>
+                <div class="slds-scoped-notification slds-theme_success slds-theme_alert-texture slds-m-bottom_medium" role="status" aria-live="polite">
+                    <div class="slds-media">
+                        <div class="slds-media__figure" aria-hidden="true">
+                            <lightning-icon icon-name="utility:success" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-text-heading_small">Submission received</div>
+                            <div class="slds-m-top_x-small">{successMessage}</div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-scoped-notification slds-theme_error slds-theme_alert-texture slds-m-bottom_medium" role="alert" aria-live="assertive">
+                    <div class="slds-media">
+                        <div class="slds-media__figure" aria-hidden="true">
+                            <lightning-icon icon-name="utility:error" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-text-heading_small">We couldn’t process your application</div>
+                            <div class="slds-m-top_x-small">{errorMessage}</div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <div class="slds-box slds-theme_default slds-m-bottom_small">
+                <div class="slds-text-title_caps slds-m-bottom_x-small">Company</div>
+                <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning-input
+                        name="companyName"
+                        label="Company Name"
+                        value={form.companyName}
+                        required
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning-input
+                        name="federalTaxId"
+                        label="Federal Tax ID"
+                        value={form.federalTaxId}
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+                </div>
+            </div>
+
+            <div class="slds-box slds-theme_default slds-m-bottom_small">
+                <div class="slds-text-title_caps slds-m-bottom_x-small">Contact</div>
+                <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        name="firstName"
+                        label="Contact First Name"
+                        value={form.firstName}
+                        required
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        name="lastName"
+                        label="Contact Last Name"
+                        value={form.lastName}
+                        required
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        type="email"
+                        name="email"
+                        label="Email"
+                        value={form.email}
+                        required
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input
+                        type="tel"
+                        name="phone"
+                        label="Phone"
+                        value={form.phone}
+                        required
+                        onchange={handleChange}>
+                    </lightning-input>
+                </div>
+                </div>
+            </div>
+
+            <div class="slds-box slds-theme_default slds-m-bottom_small">
+                <div class="slds-text-title_caps slds-m-bottom_x-small">Financials</div>
+                <lightning-input
+                    type="number"
+                    name="annualRevenue"
+                    label="Annual Revenue (optional)"
+                    value={form.annualRevenue}
+                    onchange={handleChange}>
+                </lightning-input>
+            </div>
+
+            <div class="slds-m-top_medium slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-button
+                        variant="brand"
+                        label="Submit Application"
+                        onclick={handleSubmit}
+                        disabled={isSubmitDisabled}>
+                    </lightning-button>
+                </div>
+
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-button
+                        variant="neutral"
+                        label="Reset"
+                        onclick={handleReset}
+                        disabled={isLoading}>
+                    </lightning-button>
+                </div>
+            </div>
+            </div>
+        </lightning-card>
+    </div>
+</template>
